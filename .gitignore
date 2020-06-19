@@ -1,0 +1,15 @@
+node_nodules/
+.ipynb_checkpoints
+.DS_Store
+__pycache__/
+*.log
+npm-debug.log
+*.env
+*.class
+*.jar
+build/Release
+*.apk
+.gradle/
+runs/
+mons/
+recording/
