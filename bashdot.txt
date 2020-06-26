@@ -1,0 +1,151 @@
+echo "ฅ^•ﻌ•^ฅ CatBook Pro Terminal
+Hello William, Ready to Work!"
+
+export CLICOLOR=1
+
+alias ..="cd .. && ls"
+alias up="cd .. && ls"
+alias ...="cd ../.. && ls"
+
+alias epipy="code /Users/William/Dev/EPIJudge/epi_judge_python" 
+alias bat="bat --theme \"Nord\""
+alias goog="googler -n 5 --np"
+
+lj() {
+    cd "$@" && ls;
+}
+
+hex_to_rgb() {
+    # Usage: hex_to_rgb "#FFFFFF"
+    : "${1/\#}"
+    ((r=16#${_:0:2},g=16#${_:2:2},b=16#${_:4:2}))
+    printf '%s\n' "$r $g $b"
+}
+
+rgb_to_hex() {
+    # Usage: rgb_to_hex "r" "g" "b"
+    printf '#%02x%02x%02x\n' "$1" "$2" "$3"
+}
+
+gorun() {
+    $GOPATH/bin/$1;    
+}
+
+alias py="python3"
+alias ll="exa -lah -snew"
+alias ho="cd ~"
+alias dev="cd ~/Dev && ls"
+alias pjod="cd ~/Dev/Projects/Snek/Data/ && ls"
+alias juno="jupyter-notebook"
+alias jla="jupyter-lab"
+alias gospace="cd /Users/William/go/src/code && ls"
+alias wtwo="cd ~/Documents/W2/ && ls"
+alias youbest="youtube-dl -f bestvideo+bestaudio"
+alias youaudio="youtube-dl -f 139"
+alias pjo="cd ~/Dev/Projects && ls"
+alias oon="cd ~/Downloads && ls"
+
+# Starts the cli emacs instead of the stand-alone version
+alias emacs="emacs -nw"
+
+alias ginit="git init && printf 'node_nodules/\n.ipynb_checkpoints\n.DS_Store\n__pycache__/\n*.log\nnpm-debug.log\n*.env\n*.class\n*.jar\nbuild/Release\n*.apk\n.gradle/\nruns/\nmons/\nrecording/' >> .gitignore && git secrets --install"
+alias pushom="git push -u origin master"
+alias pullom="git pull origin master"
+alias ghom="git push heroku master"
+alias gac="git add . && git commit -m"
+# Shows simple git log with history of max 28
+alias glog='git log --oneline -28 --decorate'
+
+source ~/.profile
+
+###########################################
+# Creates a divider between commands
+
+# Fill with minuses
+
+# (this is recalculated every time the prompt is shown in function prompt_command):
+
+fill="--- "
+
+reset_style='\[\033[00m\]'
+
+status_style=$reset_style'\[\033[0;90m\]' # gray color; use 0;37m for lighter color
+
+prompt_style=$reset_style
+
+command_style=$reset_style'\[\033[1;29m\]' # bold black
+
+source ~/.git_completion.bash
+
+source ~/.git-prompt.sh
+
+GIT_PS1_SHOWDIRTYSTATE=true
+
+# Prompt variable:
+#PS1="$status_style"'$fill \t\n'"$prompt_style"'${debian_chroot:+($debian_chroot)}🍀 \[\033[34m\] Will @ \W$(__git_ps1 "(\[\033[32m\]%s\[\033[36m\])")\[\033[m\] $ '"$command_style "
+
+PS1="$status_style"'$fill \t\n'"$prompt_style"'${debian_chroot:+($debian_chroot)}🍀 \[\033[38;5;33m\] Wm\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;39m\]@\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;33m\]\W\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;39m\]\\$\[$(tput sgr0)\] $(__git_ps1 "(\[\033[32m\]%s\[\033[36m\])")'"$command_style "
+
+# Reset color for command output
+
+# (this one is invoked every time before a command is executed):
+
+trap 'echo -ne "\033[00m"' DEBUG
+
+function prompt_command {
+
+# create a $fill of all screen width minus the time string and a space:
+
+let fillsize=${COLUMNS}-9
+
+fill=""
+
+while [ "$fillsize" -gt "0" ]
+
+do
+
+fill="-${fill}" # fill with underscores to work on
+
+let fillsize=${fillsize}-1
+
+done
+
+# If this is an xterm set the title to user@host:dir
+
+case "$TERM" in
+
+xterm*|rxvt*)
+
+bname=`basename "${PWD/$HOME/~}"`
+
+echo -ne "\033]0;${bname}: ${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"
+
+;;
+
+*)
+
+;;
+
+esac
+
+}
+
+PROMPT_COMMAND=prompt_command
+
+# added by Anaconda3 2019.07 installer
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/William/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    \eval "$__conda_setup"
+else
+    if [ -f "/Users/William/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/William/anaconda3/etc/profile.d/conda.sh"
+        CONDA_CHANGEPS1=false conda activate base
+    else
+        \export PATH="/Users/William/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda init <<<
+
